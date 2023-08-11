@@ -5,6 +5,7 @@ function Heading({ score, setScore, highScore, setHighScore }) {
   return (
     <StyledHeading>
       <div>Score: {score}</div>
+      <div>HighScore: {highScore}</div>
     </StyledHeading>
   );
 }

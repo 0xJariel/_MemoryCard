@@ -96,8 +96,16 @@ function App() {
 
   return (
     <StyledApp>
-      <MovieList movies={movies} setMovies={setMovies} />
       <Heading
+        score={score}
+        setScore={setScore}
+        highScore={highScore}
+        setHighScore={setHighScore}
+      />
+
+      <MovieList
+        movies={movies}
+        setMovies={setMovies}
         score={score}
         setScore={setScore}
         highScore={highScore}

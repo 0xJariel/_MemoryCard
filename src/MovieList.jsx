@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
-const MovieList = (props) => {
+const MovieList = ({
+  movies,
+  setMovies,
+  score,
+  setScore,
+  setHighScore,
+  highScore,
+}) => {
+  const [clickedTiles, setClickedTiles] = useState([]);
+
+  const checkGame = (e) => {
+    //if e.target is in the list
+    const itemExists = clickedTiles.includes(e.target.alt);
+    if (itemExists) {
+      setClickedTiles([]);
+      setScore(0);
+      console.log(itemExists);
+      return;
+    }
+
+    setScore(score + 1);
+  };
+
+  useEffect(() => {
+    if (score >= highScore) {
+      setHighScore(score);
+    }
+  }, [score]);
+
   const handleClick = (e) => {
-    console.log("hello");
-    props.setMovies(shuffleArray(props.movies));
+    setMovies(shuffleArray(movies));
+    setClickedTiles((prev) => [...prev, e.target.alt]);
+    checkGame(e);
+    console.log(clickedTiles);
+
+    //if its a clicked tile reset score to 0
+    //if score is greater than highscore update highscore
+    //if highscore is == 10 reset both
+
+    //check if the tile has been clicked
   };
 
   function shuffleArray(array) {
@@ -19,7 +55,7 @@ const MovieList = (props) => {
     return shuffledArray;
   }
 
-  const shuffledMovies = shuffleArray(props.movies); // Shuffle the movie array
+  const shuffledMovies = shuffleArray(movies); // Shuffle the movie array
 
   const createTiles = (tileList) => {
     return shuffledMovies.map((movie, index) => (
