@@ -35,12 +35,6 @@ const MovieList = ({
     setClickedTiles((prev) => [...prev, e.target.alt]);
     checkGame(e);
     console.log(clickedTiles);
-
-    //if its a clicked tile reset score to 0
-    //if score is greater than highscore update highscore
-    //if highscore is == 10 reset both
-
-    //check if the tile has been clicked
   };
 
   function shuffleArray(array) {
